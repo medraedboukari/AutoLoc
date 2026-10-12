@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -26,6 +27,12 @@ public class Agence {
     private String ville;
     private String adresse;
     private String telephone;
-    @OneToMany(mappedBy ="agence")
-    List<Vehicule> vehicules;
+
+    @OneToMany(mappedBy = "agence", fetch = FetchType.LAZY)
+    @ToString.Exclude
+    private List<Vehicule> vehicules = new ArrayList<>();
+
+    @OneToMany(mappedBy = "agence", fetch = FetchType.LAZY)
+    @ToString.Exclude
+    private List<Employe> employes = new ArrayList<>();
 }

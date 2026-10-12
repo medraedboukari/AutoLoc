@@ -26,6 +26,7 @@ public class Maintenance {
     private LocalDate dateFin;
     private String description;
 
-    @ManyToOne
-    Vehicule vehicule;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @ToString.Exclude
+    private Vehicule vehicule;
 }
