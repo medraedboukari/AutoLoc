@@ -26,4 +26,6 @@ public class Vehicule {
       private BigDecimal tarifJournalier;
       @Enumerated(value=EnumType.STRING)
       private StatutVehicule statut;
+
+
 }
