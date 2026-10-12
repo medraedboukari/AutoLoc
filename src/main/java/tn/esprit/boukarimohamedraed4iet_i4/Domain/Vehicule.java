@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 @Entity
 @Getter
@@ -27,5 +28,8 @@ public class Vehicule {
       @Enumerated(value=EnumType.STRING)
       private StatutVehicule statut;
 
-
+  @ManyToMany
+  List<Equipement> equipements;
+  @ManyToOne
+    Agence agence;
 }
