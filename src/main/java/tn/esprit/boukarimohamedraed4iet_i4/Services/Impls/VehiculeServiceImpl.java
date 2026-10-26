@@ -1,9 +1,7 @@
 package tn.esprit.boukarimohamedraed4iet_i4.Services.Impls;
 
 import jakarta.persistence.EntityNotFoundException;
-import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import tn.esprit.boukarimohamedraed4iet_i4.Domain.Vehicule;
 import tn.esprit.boukarimohamedraed4iet_i4.Repository.IVehiculeRepository;
@@ -18,7 +16,8 @@ public class VehiculeServiceImpl implements IVehiculeServices {
 
     @Override
     public Vehicule getById(long id) {
-        return iVehiculeRepository.findById(id).get();
+        return iVehiculeRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("Vehicule introuvable avec l'id : " + id));
     }
 
     @Override
