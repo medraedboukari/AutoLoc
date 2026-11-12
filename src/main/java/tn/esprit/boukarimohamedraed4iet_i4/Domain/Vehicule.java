@@ -1,5 +1,7 @@
 package tn.esprit.boukarimohamedraed4iet_i4.Domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -31,10 +33,12 @@ public class Vehicule {
       @Enumerated(value=EnumType.STRING)
       private StatutVehicule statut;
 
+    @JsonBackReference
     @ManyToOne(fetch = FetchType.LAZY)
     @ToString.Exclude
     private Agence agence;
 
+    @JsonManagedReference
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
             name = "vehicule_equipement",
@@ -44,6 +48,7 @@ public class Vehicule {
     @ToString.Exclude
     private Set<Equipement> equipements = new HashSet<>();
 
+    @JsonManagedReference
     @OneToMany(mappedBy = "vehicule", cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
     @ToString.Exclude
     private List<Maintenance> maintenances = new ArrayList<>();

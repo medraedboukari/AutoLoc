@@ -1,5 +1,6 @@
 package tn.esprit.boukarimohamedraed4iet_i4.Domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -33,6 +34,7 @@ public class Employe {
     @Enumerated(EnumType.STRING)
     private RoleEmploye role;
 
+    @JsonBackReference
     @ManyToOne(fetch = FetchType.LAZY)
     @ToString.Exclude
     private Agence agence;

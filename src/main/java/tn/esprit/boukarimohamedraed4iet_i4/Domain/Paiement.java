@@ -1,5 +1,6 @@
 package tn.esprit.boukarimohamedraed4iet_i4.Domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -30,6 +31,7 @@ public class Paiement {
     private ModePaiement modePaiement;
 
 
+    @JsonBackReference
     @ManyToOne(fetch = FetchType.LAZY)
     @ToString.Exclude
     private Contrat contrat;

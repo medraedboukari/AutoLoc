@@ -1,5 +1,6 @@
 package tn.esprit.boukarimohamedraed4iet_i4.Domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -26,6 +27,7 @@ public class Maintenance {
     private LocalDate dateFin;
     private String description;
 
+    @JsonBackReference
     @ManyToOne(fetch = FetchType.LAZY)
     @ToString.Exclude
     private Vehicule vehicule;

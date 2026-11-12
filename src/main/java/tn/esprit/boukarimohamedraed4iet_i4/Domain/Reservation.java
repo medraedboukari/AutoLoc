@@ -1,5 +1,7 @@
 package tn.esprit.boukarimohamedraed4iet_i4.Domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -28,6 +30,7 @@ public class Reservation {
     @Enumerated(EnumType.STRING)
     private StatutReservation statut;
 
+    @JsonBackReference
     @ManyToOne(fetch = FetchType.LAZY)
     @ToString.Exclude
     private Client client;
@@ -36,6 +39,7 @@ public class Reservation {
     @ToString.Exclude
     private Vehicule vehicule;
 
+    @JsonManagedReference
     @OneToOne(mappedBy = "reservation", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @ToString.Exclude
     private Contrat contrat;

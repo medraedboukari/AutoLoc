@@ -1,5 +1,7 @@
 package tn.esprit.boukarimohamedraed4iet_i4.Domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -29,10 +31,12 @@ public class Contrat {
     private BigDecimal montantTotal;
     private boolean valide;
 
+    @JsonBackReference
     @OneToOne(fetch = FetchType.LAZY)
     @ToString.Exclude
     private Reservation reservation;
 
+    @JsonManagedReference
     @OneToMany(mappedBy = "contrat", cascade = CascadeType.ALL,
             orphanRemoval = true, fetch = FetchType.LAZY)
     @ToString.Exclude

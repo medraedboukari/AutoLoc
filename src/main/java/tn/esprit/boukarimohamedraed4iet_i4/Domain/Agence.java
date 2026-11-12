@@ -1,5 +1,6 @@
 package tn.esprit.boukarimohamedraed4iet_i4.Domain;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -27,11 +28,13 @@ public class Agence {
     private String ville;
     private String adresse;
     private String telephone;
-
+    @JsonManagedReference
     @OneToMany(mappedBy = "agence", fetch = FetchType.LAZY)
+
     @ToString.Exclude
     private List<Vehicule> vehicules = new ArrayList<>();
 
+    @JsonManagedReference
     @OneToMany(mappedBy = "agence", fetch = FetchType.LAZY)
     @ToString.Exclude
     private List<Employe> employes = new ArrayList<>();
