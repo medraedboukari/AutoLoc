@@ -52,6 +52,11 @@ public class VehiculeRestController {
         return iVehiculeServices.assignToAgence(vehiculeId, agenceId);
     }
 
+    @PutMapping("unassign/{vehiculeId}/from/agence")
+    public Vehicule unassignFromAgence(@PathVariable Long vehiculeId) {
+        return iVehiculeServices.unassignFromAgence(vehiculeId);
+    }
+
     @PutMapping("assign/{vehiculeId}/to/equipement/{equipementId}")
     public Vehicule assignToEquipement(@PathVariable Long vehiculeId, @PathVariable Long equipementId) {
         return iVehiculeServices.assignToEquipement(vehiculeId, equipementId);
@@ -61,5 +66,10 @@ public class VehiculeRestController {
     @org.springframework.web.bind.annotation.ResponseStatus(HttpStatus.NOT_FOUND)
     public String handleNotFound(EntityNotFoundException exception) {
         return exception.getMessage();
+    }
+
+    @PutMapping("unassign/{vehiculeId}/from/equipement/{equipementId}")
+    public Vehicule unassignFromEquipement(@PathVariable Long vehiculeId, @PathVariable Long equipementId) {
+        return iVehiculeServices.unassignFromEquipement(vehiculeId, equipementId);
     }
 }

@@ -59,6 +59,14 @@ public class VehiculeServiceImpl implements IVehiculeServices {
 
     @Override
     @Transactional
+    public Vehicule unassignFromAgence(Long vehiculeId) {
+        Vehicule vehicule = getById(vehiculeId);
+        vehicule.setAgence(null);
+        return iVehiculeRepository.save(vehicule);
+    }
+
+    @Override
+    @Transactional
     public Vehicule assignToEquipement(Long vehiculeId, Long equipementId) {
         Vehicule vehicule = getById(vehiculeId);
         Equipement equipement = iEquipementRepository.findById(equipementId)
@@ -67,4 +75,16 @@ public class VehiculeServiceImpl implements IVehiculeServices {
         vehicule.getEquipements().add(equipement);
         return iVehiculeRepository.save(vehicule);
     }
+
+    @Override
+    @Transactional
+    public Vehicule unassignFromEquipement(Long vehiculeId, Long equipementId) {
+        Vehicule vehicule = getById(vehiculeId);
+        Equipement equipement = iEquipementRepository.findById(equipementId)
+                .orElseThrow(() -> new EntityNotFoundException("Equipement introuvable avec l'id : " + equipementId));
+
+        vehicule.getEquipements().remove(equipement);
+        return iVehiculeRepository.save(vehicule);
+    }
 }
+

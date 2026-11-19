@@ -11,5 +11,7 @@ public interface IVehiculeServices {
     void deleteById(long id);
     List<Vehicule> findAll();
     Vehicule assignToAgence(Long vehiculeId, Long agenceId);
+    Vehicule unassignFromAgence(Long vehiculeId);
     Vehicule assignToEquipement(Long vehiculeId, Long equipementId);
+    Vehicule unassignFromEquipement(Long vehiculeId, Long equipementId);
 }
