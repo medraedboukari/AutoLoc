@@ -27,7 +27,7 @@ public class Maintenance {
     private LocalDate dateFin;
     private String description;
 
-    @JsonBackReference
+    @JsonBackReference("vehicule-maintenances")
     @ManyToOne(fetch = FetchType.LAZY)
     @ToString.Exclude
     private Vehicule vehicule;

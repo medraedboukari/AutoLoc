@@ -21,8 +21,10 @@ public class EquipementRestController {
     private final IEquipementServices iEquipementServices;
 
     @PostMapping("add")
-    public Equipement create(@RequestBody Equipement entity) {
-        return iEquipementServices.add(entity);
+    public Equipement create(@RequestBody EquipementRequest request) {
+        Equipement equipement = new Equipement();
+        equipement.setLibelle(request.libelle());
+        return iEquipementServices.add(equipement);
     }
 
     @GetMapping("get/{id}")

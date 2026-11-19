@@ -21,8 +21,13 @@ public class AgenceRestController {
     private final IAgenceServices iAgenceServices;
 
     @PostMapping("add")
-    public Agence create(@RequestBody Agence entity) {
-        return iAgenceServices.add(entity);
+    public Agence create(@RequestBody AgenceRequest request) {
+        Agence agence = new Agence();
+        agence.setNom(request.nom());
+        agence.setVille(request.ville());
+        agence.setAdresse(request.adresse());
+        agence.setTelephone(request.telephone());
+        return iAgenceServices.add(agence);
     }
 
     @GetMapping("get/{id}")

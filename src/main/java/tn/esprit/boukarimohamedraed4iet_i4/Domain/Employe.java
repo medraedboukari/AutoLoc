@@ -34,7 +34,7 @@ public class Employe {
     @Enumerated(EnumType.STRING)
     private RoleEmploye role;
 
-    @JsonBackReference
+    @JsonBackReference("agence-employes")
     @ManyToOne(fetch = FetchType.LAZY)
     @ToString.Exclude
     private Agence agence;
